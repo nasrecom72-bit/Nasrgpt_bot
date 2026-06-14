@@ -2,8 +2,8 @@ import os
 import telebot
 import anthropic
 
-TELEGRAM_TOKEN = os.environ.get("TELEGRAM_TOKEN")
-ANTHROPIC_KEY = os.environ.get("ANTHROPIC_API_KEY")
+TELEGRAM_TOKEN = os.environ.get("8654539732:AAEmxb6unTVfN8sJovxGd6UQ_CUKkf2WkiY")
+ANTHROPIC_KEY = os.environ.get("AQ.Ab8RN6KNdosenz0OmFcz1LcrRriDxPAmTO1jKFIqaAQYETFX4Q")
 
 bot = telebot.TeleBot(TELEGRAM_TOKEN)
 client = anthropic.Anthropic(api_key=ANTHROPIC_KEY)
