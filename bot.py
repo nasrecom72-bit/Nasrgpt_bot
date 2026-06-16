@@ -5,8 +5,7 @@ from openai import OpenAI
 TELEGRAM_TOKEN = os.environ.get("TELEGRAM_TOKEN")
 OPENROUTER_API_KEY = os.environ.get("OPENROUTER_API_KEY")
 
-client = OpenAI(
-    api_key="openrouter/free",
+model="deepseek/deepseek-r1:free",
     base_url="https://openrouter.ai/api/v1"
 )
 
