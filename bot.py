@@ -6,7 +6,7 @@ TELEGRAM_TOKEN = os.environ.get("TELEGRAM_TOKEN")
 OPENROUTER_API_KEY = os.environ.get("OPENROUTER_API_KEY")
 
 client = OpenAI(
-    api_key=OPENROUTER_API_KEY,
+    api_key="openrouter/free",
     base_url="https://openrouter.ai/api/v1"
 )
 
