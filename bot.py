@@ -5,12 +5,12 @@ from openai import OpenAI
 TELEGRAM_TOKEN = os.environ.get("TELEGRAM_TOKEN")
 OPENROUTER_API_KEY = os.environ.get("OPENROUTER_API_KEY")
 
+bot = telebot.TeleBot(TELEGRAM_TOKEN)
 client = OpenAI(
     api_key=OPENROUTER_API_KEY,
     base_url="https://openrouter.ai/api/v1"
 )
 
-bot = telebot.TeleBot(TELEGRAM_TOKEN)
 user_history = {}
 
 @bot.message_handler(commands=['start'])
@@ -42,19 +42,21 @@ def handle(message):
 
     try:
         response = client.chat.completions.create(
-            model="openrouter/free",
+            model="meta-llama/llama-3.3-70b-instruct:free",
             messages=[
-                {"role": "system", "content": "أنت NasrGPT، مساعد ذكي ومفيد يتحدث العربية بطلاقة."}
-            ] + user_history[chat_id]
+                {"role": "system", "content": "أنت NasrGPT، مساعد ذكاء اصطناعي ذكي ومفيد يتحدث العربية بطلاقة. أجب بشكل واضح ومختصر وودي."},
+                *user_history[chat_id]
+            ]
         )
+
         reply = response.choices[0].message.content
         user_history[chat_id].append({"role": "assistant", "content": reply})
-        # تقسيم الرسائل الطويلة
-if len(reply) > 4000:
-    for i in range(0, len(reply), 4000):
-        bot.send_message(chat_id, reply[i:i+4000])
-else:
-    bot.reply_to(message, reply)
+
+        if len(reply) > 4000:
+            for i in range(0, len(reply), 4000):
+                bot.send_message(chat_id, reply[i:i+4000])
+        else:
+            bot.reply_to(message, reply)
 
     except Exception as e:
         bot.reply_to(message, f"⚠️ حدث خطأ: {str(e)}")
