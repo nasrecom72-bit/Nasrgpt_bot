@@ -42,7 +42,7 @@ def handle(message):
 
     try:
         response = client.chat.completions.create(
-            model="google/gemini-2.0-flash-exp:free",
+            model="openrouter/free",
             messages=[
                 {"role": "system", "content": "أنت NasrGPT، مساعد ذكاء اصطناعي ذكي ومفيد يتحدث العربية بطلاقة. أجب بشكل واضح ومختصر وودي."},
                 *user_history[chat_id]
