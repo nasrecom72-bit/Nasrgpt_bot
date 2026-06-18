@@ -42,7 +42,7 @@ def handle(message):
 
     try:
         response = client.chat.completions.create(
-            model="deepseek/deepseek-r1:free",
+            model="openrouter/free",
             messages=[
                 {"role": "system", "content": "أنت NasrGPT، مساعد ذكي ومفيد يتحدث العربية بطلاقة."}
             ] + user_history[chat_id]
