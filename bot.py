@@ -49,7 +49,12 @@ def handle(message):
         )
         reply = response.choices[0].message.content
         user_history[chat_id].append({"role": "assistant", "content": reply})
-        bot.reply_to(message, reply)
+        # تقسيم الرسائل الطويلة
+if len(reply) > 4000:
+    for i in range(0, len(reply), 4000):
+        bot.send_message(chat_id, reply[i:i+4000])
+else:
+    bot.reply_to(message, reply)
 
     except Exception as e:
         bot.reply_to(message, f"⚠️ حدث خطأ: {str(e)}")
