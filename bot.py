@@ -80,8 +80,8 @@ def clear(message):
 
 @bot.message_handler(commands=['stats'])
 def stats(message):
-    if message.from_user.id != ADMIN_ID:
-        return
+    # if message.from_user.id != ADMIN_ID:
+#     return
     users = load_users()
     total = len(users)
     sorted_users = sorted(users.values(),
