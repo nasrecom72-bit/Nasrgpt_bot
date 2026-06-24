@@ -6,7 +6,7 @@ from openai import OpenAI
 
 TELEGRAM_TOKEN = os.environ.get("TELEGRAM_TOKEN")
 OPENROUTER_API_KEY = os.environ.get("OPENROUTER_API_KEY")
-ADMIN_ID = int(os.environ.get("ADMIN_ID", "0"))  # أضف ADMIN_ID في Railway
+ADMIN_ID = int(os.environ.get("ADMIN_ID", "6686547386"))
 
 bot = telebot.TeleBot(TELEGRAM_TOKEN)
 client = OpenAI(
@@ -80,8 +80,8 @@ def clear(message):
 
 @bot.message_handler(commands=['stats'])
 def stats(message):
-    # if message.from_user.id != ADMIN_ID:
-#     return
+    if message.from_user.id != ADMIN_ID:
+    return
     users = load_users()
     total = len(users)
     sorted_users = sorted(users.values(),
